@@ -1,42 +1,52 @@
 
 //get random move
-function getComputerChoice() {
+function getComputerChoice() 
+{
     let choice = 0 ; 
     choice = Math.floor((Math.random() * 3)+1); 
-    if(choice == 1){
+
+    if(choice == 1)
+    {
         choice = "ROCK";
     }
 
-    else if(choice == 2){
+    else if(choice == 2)
+    {
         choice = "PAPER";
-
-
     }
 
-    else{
+    else
+    {
         choice = "SCISSORS";
     }
+    
     return choice; 
 
 }
 
-
+//set of player moves 
 let moves = new Set(["ROCK", "PAPER", "SCISSORS"]);
-//get players move 
-function getPlayerChoice(){
+
+
+function getPlayerChoice()
+{
 
     let choice = prompt("Make your move!").toUpperCase(); 
-    if( moves.has(choice) ){
-    return choice; 
+
+    if( moves.has(choice) )
+    {
+        return choice; 
     } 
-    else {
+    else 
+    {
         return "INVALID MOVE!";
     }
 
 }
 
 //set winning conditions and return string declaring winner 
-function playRound(c, p){
+function playRound(c, p)
+{
     
     if(c == "ROCK" && p=="SCISSORS"){
         return "You Lose, Rock beats Scissors"
@@ -95,53 +105,59 @@ function playRound(c, p){
 let computerScore = 0 
 let playerScore = 0 
 
-function game(){
-console.log("First to Five!");
-let over = false; 
-//game loop 
-while(over == false){
-console.log(`Score: Player ${playerScore} - ${computerScore} Computer`);
-let result = "";
-result = playRound(getComputerChoice(), getPlayerChoice());
+function game()
+{
+    console.log("First to Five!");
+    let over = false; 
+    //game loop 
+    while(over == false)
+    {
+        console.log(`Score: Player ${playerScore} - ${computerScore} Computer`);
+        let result = "";
+        result = playRound(getComputerChoice(), getPlayerChoice());
 
-if(result.includes("Win")){
-    playerScore++ ; 
-    console.log(result); 
-}
+        if(result.includes("Win"))
+        {
+            playerScore++ ; 
+            console.log(result); 
+        }
 
-else if( result.includes("Lose")){
+        else if( result.includes("Lose"))
+        {
+            computerScore++; 
+            console.log(result); 
+        }
 
-    computerScore++; 
-    console.log(result); 
-}
+        else if(result.includes("TIE"))
+        {
+            console.log(result); 
+        }
 
-else if(result.includes("TIE")){
-    console.log(result); 
-}
-
-else {
-    console.log(result); 
-    continue;
-}
-
-
-
-if(computerScore == 5 || playerScore == 5){
+        else
+        {
+            console.log(result); 
+            continue;
+        }
 
 
-    over = true;
 
-    console.log(`Score: Player ${playerScore} - ${computerScore} Computer`);
-    if(computerScore>playerScore){
-        console.log("You are a LOSER!");
+        if(computerScore == 5 || playerScore == 5)
+        {
+            over = true;
+            console.log(`Score: Player ${playerScore} - ${computerScore} Computer`);
+
+            if(computerScore>playerScore)
+            {
+                console.log("You are a LOSER!");
+            }
+
+            else
+            {
+                console.log("Congrats you win!"); 
+            }
+        }
 
     }
-    else{
-        console.log("Congrats you win!"); 
-    }
-}
-
-}
 
 
 
