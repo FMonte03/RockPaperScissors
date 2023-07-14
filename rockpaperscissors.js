@@ -19,7 +19,7 @@ function getComputerChoice()
     {
         choice = "SCISSORS";
     }
-    
+
     return choice; 
 
 }
@@ -27,33 +27,29 @@ function getComputerChoice()
 //set of player moves 
 let moves = new Set(["ROCK", "PAPER", "SCISSORS"]);
 
+const btnRock = document.querySelector('.Rock'); 
+btnRock.addEventListener('click', () => {game('ROCK')});
 
-function getPlayerChoice()
-{
+const btnPaper = document.querySelector('.Paper'); 
+btnPaper.addEventListener('click', () => {game('PAPER')})
 
-    let choice = prompt("Make your move!").toUpperCase(); 
+const btnScissors = document.querySelector('.Scissors'); 
+btnScissors.addEventListener('click', () => {game('SCISSORS')});
 
-    if( moves.has(choice) )
-    {
-        return choice; 
-    } 
-    else 
-    {
-        return "INVALID MOVE!";
-    }
 
-}
 
 //set winning conditions and return string declaring winner 
 function playRound(c, p)
 {
     
     if(c == "ROCK" && p=="SCISSORS"){
+        computerScore++; 
         return "You Lose, Rock beats Scissors"
     }
     
     else if(c == "ROCK" && p=="PAPER")
     {
+        playerScore++;
         return "You Win, Paper beats Rock"
 
     }
@@ -65,6 +61,7 @@ function playRound(c, p)
 
     else if(c == "PAPER" && p=="SCISSORS")
     {
+        playerScore++;
         return "You Win, Scissors beats Paper"
 
     }
@@ -75,6 +72,7 @@ function playRound(c, p)
     }
     else if(c == "PAPER" && p=="ROCK")
     {
+        computerScore++;
         return "You Lose, Paper beats Rock"
 
     }
@@ -85,11 +83,13 @@ function playRound(c, p)
     }
     else if(c == "SCISSORS" && p=="PAPER")
     {
+        computerScore++;
         return "You Lose, Scissors beats Paper"
 
     }
     else if(c == "SCISSORS" && p=="ROCK")
     {
+        playerScore++;
         return "You Win, Rock beats scissors"
 
     }
@@ -105,62 +105,24 @@ function playRound(c, p)
 let computerScore = 0 
 let playerScore = 0 
 
-function game()
-{
-    console.log("First to Five!");
-    let over = false; 
-    //game loop 
-    while(over == false)
-    {
-        console.log(`Score: Player ${playerScore} - ${computerScore} Computer`);
-        let result = "";
-        result = playRound(getComputerChoice(), getPlayerChoice());
 
-        if(result.includes("Win"))
-        {
-            playerScore++ ; 
-            console.log(result); 
-        }
-
-        else if( result.includes("Lose"))
-        {
-            computerScore++; 
-            console.log(result); 
-        }
-
-        else if(result.includes("TIE"))
-        {
-            console.log(result); 
-        }
-
-        else
-        {
-            console.log(result); 
-            continue;
-        }
+//game function called when player makes a move, gets player choice, computer choice, declares a winner, and then changes the score, and finally checks if there's a winner 
+function game(playerChoice){
+let computerChoice = getComputerChoice(); 
+let result = playRound( computerChoice , playerChoice); 
+console.log(result);
+console.log(`Player ${playerScore} - ${computerScore} Computer`); 
 
 
 
-        if(computerScore == 5 || playerScore == 5)
-        {
-            over = true;
-            console.log(`Score: Player ${playerScore} - ${computerScore} Computer`);
-
-            if(computerScore>playerScore)
-            {
-                console.log("You are a LOSER!");
-            }
-
-            else
-            {
-                console.log("Congrats you win!"); 
-            }
-        }
-
-    }
 
 
+checkWinner(); 
+}
+//declares winner and then a pop up shows with a button to reset the game. 
+function checkWinner(){
+    if (computerScore == 5) return "Computer Wins!";
+    else if (playerScore == 5) return "Player Wins!";
+    else return; 
 
 }
-
-game()
