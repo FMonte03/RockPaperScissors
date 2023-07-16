@@ -24,8 +24,6 @@ function getComputerChoice()
 
 }
 
-//set of player moves 
-let moves = new Set(["ROCK", "PAPER", "SCISSORS"]);
 
 const btnRock = document.querySelector('.Rock'); 
 btnRock.addEventListener('click', () => {game('ROCK')});
@@ -105,14 +103,31 @@ function playRound(c, p)
 let computerScore = 0 
 let playerScore = 0 
 
+//update functions change the score and the result following the player's choice 
+function updateNarrator(str){
+
+    const narrator = document.querySelector('.Narrator'); 
+    narrator.textContent = str
+
+
+}
+
+function updateScoreboard(){
+
+const board = document.querySelector('.ScoreBoard')
+board.textContent = `Player ${playerScore} - ${computerScore} CPU`
+
+
+}
 
 //game function called when player makes a move, gets player choice, computer choice, declares a winner, and then changes the score, and finally checks if there's a winner 
 function game(playerChoice){
 let computerChoice = getComputerChoice(); 
 let result = playRound( computerChoice , playerChoice); 
-console.log(result);
-console.log(`Player ${playerScore} - ${computerScore} Computer`); 
 
+console.log(`Player ${playerScore} - ${computerScore} Computer`); 
+updateScoreboard(); 
+updateNarrator(result); 
 
 
 
