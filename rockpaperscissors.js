@@ -153,7 +153,7 @@ updateScoreboard();
 updateNarrator(result); 
 
 
-console.log(playerScore, computerScore)
+
 
 checkWinner(); 
 
