@@ -34,7 +34,8 @@ btnPaper.addEventListener('click', () => {game('PAPER')})
 const btnScissors = document.querySelector('.Scissors'); 
 btnScissors.addEventListener('click', () => {game('SCISSORS')});
 
-
+const tryAgain = document.querySelector('.modalButton');
+tryAgain.addEventListener('click', gameReset); 
 
 //set winning conditions and return string declaring winner 
 function playRound(c, p)
@@ -147,20 +148,71 @@ function updateGameContainer(player, computer){
 function game(playerChoice){
 let computerChoice = getComputerChoice(); 
 let result = playRound( computerChoice , playerChoice); 
-
 updateGameContainer(playerChoice, computerChoice); 
 updateScoreboard(); 
 updateNarrator(result); 
 
 
-
+console.log(playerScore, computerScore)
 
 checkWinner(); 
+
+
 }
+
+
 //declares winner and then a pop up shows with a button to reset the game. 
 function checkWinner(){
-    if (computerScore == 5) return "Computer Wins!";
-    else if (playerScore == 5) return "Player Wins!";
+
+    if (computerScore == 5){
+        const modal = document.querySelector('.modal'); 
+        modal.style.display = "flex"; 
+        const result = document.querySelector(".result"); 
+        result.innerHTML = "You are a <strong>LOSER</strong>" ;
+        const tryAgain = document.querySelector('.modalButton');
+        tryAgain.addEventListener('click', gameReset); 
+
+    } 
+    else if (playerScore == 5) {
+        const modal = document.querySelector('.modal'); 
+        modal.style.display = "flex"; 
+        const result = document.querySelector(".result"); 
+        result.innerHTML = "Congrats, You Win!" ;
+        const tryAgain = document.querySelector('.modalButton');
+        tryAgain.addEventListener('click', gameReset); 
+
+       
+    }
     else return; 
+
+}
+
+
+function gameReset(){
+
+    computerScore= 0; 
+    playerScore = 0; 
+    
+    const narrator = document.querySelector('.Narrator'); 
+    narrator.textContent = "First to Five, Do you have what it takes?";
+
+    const board = document.querySelector('.ScoreBoard');
+    board.textContent = "Player 0 - 0 Computer"; 
+
+    const pImg = document.querySelector('#playerIMG'); 
+    const cImg = document.querySelector('#computerIMG'); 
+    cImg.src  = ""; 
+    pImg.src = ""; 
+
+    const pPara = pImg.nextElementSibling; 
+    const cPara = cImg.nextElementSibling;
+    pPara.textContent = ""; 
+    cPara.textContent = "";
+
+    const modal = document.querySelector('.modal');
+    modal.style.display = "none"; 
+    const result = document.querySelector(".result"); 
+    result.innerHTML = "" ;
+    
 
 }

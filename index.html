@@ -7,18 +7,23 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title></title>
+        <title>Rock Paper Scissors</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="main.css">
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Lumanosimo&family=VT323&family=Victor+Mono:wght@100&display=swap" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Play" />
     </head>
     <body>
+        <div class="modal">
+        <div class="modalContent">
+            <div class="result">You Lose!</div>
+             <button class="modalButton">Try Again?</button>
+        </div>
+       </div>
+
         <h1>Rock Paper Scissors</h1>
         <div class="ScoreBoard"> Player 0 - 0 CPU</div>
-        <div class="Narrator">Do you have what it takes? </div>
+        <div class="Narrator">First to 5</br>Do you have what it takes </div>
         <div class="gameContainer">
             <div><img id="playerIMG" src=""/><p></p></div>
             <div><img id="computerIMG" src=""/><p></p></div>
