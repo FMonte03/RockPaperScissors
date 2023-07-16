@@ -120,12 +120,35 @@ board.textContent = `Player ${playerScore} - ${computerScore} CPU`
 
 }
 
+const imgSrc = {
+    ROCK : "images/Untitled_design__2_-removebg-preview.png", 
+    PAPER : "images/Untitled_design__1_-removebg-preview.png",
+    SCISSORS : "images/Untitled_design-removebg-preview.png"
+}; 
+
+
+//changes emoji and p text inside game container div
+function updateGameContainer(player, computer){
+
+    const pImg = document.querySelector('#playerIMG'); 
+    const cImg = document.querySelector('#computerIMG'); 
+
+    pImg.src = imgSrc[player]; 
+    cImg.src = imgSrc[computer]; 
+
+    const pPara = pImg.nextElementSibling; 
+    const cPara = cImg.nextElementSibling;
+
+    pPara.textContent = player.charAt(0).toUpperCase()+player.toLowerCase().slice(1)  +"!";
+    cPara.textContent = computer.charAt(0).toUpperCase() + computer.toLowerCase().slice(1)+"!"; 
+}
+
 //game function called when player makes a move, gets player choice, computer choice, declares a winner, and then changes the score, and finally checks if there's a winner 
 function game(playerChoice){
 let computerChoice = getComputerChoice(); 
 let result = playRound( computerChoice , playerChoice); 
 
-console.log(`Player ${playerScore} - ${computerScore} Computer`); 
+updateGameContainer(playerChoice, computerChoice); 
 updateScoreboard(); 
 updateNarrator(result); 
 
