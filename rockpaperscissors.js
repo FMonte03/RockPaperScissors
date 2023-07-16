@@ -194,7 +194,7 @@ function gameReset(){
     playerScore = 0; 
     
     const narrator = document.querySelector('.Narrator'); 
-    narrator.textContent = "First to Five, Do you have what it takes?";
+    narrator.innerHTML = "First to Five,</br> Do you have what it takes?";
 
     const board = document.querySelector('.ScoreBoard');
     board.textContent = "Player 0 - 0 Computer"; 
